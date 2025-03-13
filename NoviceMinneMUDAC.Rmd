@@ -1,0 +1,118 @@
+---
+title: "NoviceMinneMUDAC"
+author: "Najma Aden"
+date: "2025-03-13"
+output: html_document
+---
+
+```{r}
+novice_dataset=read.csv("Novice.csv")
+novice_dataset$Closure.Reason=as.factor(novice_dataset$Closure.Reason)
+novice_dataset$Program.Type = as.factor(novice_dataset$Program.Type)
+novice_dataset$Match.Year=as.numeric(substr(novice_dataset$Match.Activation.Date,1,4))
+novice_dataset$Big.Level.of.Education=as.factor(novice_dataset$Big.Level.of.Education)
+novice_dataset$Big.Gender = as.factor(novice_dataset$Big.Gender)
+novice_dataset$Little.Gender = as.factor(novice_dataset$Little.Gender)
+
+```
+
+Understand and analyze the response variable distributions
+
+```{r}
+hist(novice_dataset$Match.Length, 
+     main = "Match Length", 
+     xlab = "Length", 
+     ylab = "Frequency", 
+     col = "black", 
+     border = "green") #Looks like an exponential distribution
+barplot(table(novice_dataset$Closure.Reason), #Looks like Bimodal distribution
+        main ="Closure Reason",
+        ylab = "Frequency",
+        xlab = "Reason",
+        col = "black",
+        border = "green")
+table(novice_dataset$Closure.Reason)
+summary(novice_dataset$Match.Length)
+#Biggest Reasons are Volunteer: Time and Agency: Challenges with Program
+```
+
+How do the response variable distributions vary across Program Type? 
+```{r}
+par(mfrow=c(2,2))
+program_types=unique(novice_dataset$Program.Type)
+for (type in program_types) {
+  hist(novice_dataset$Match.Length[novice_dataset$Program.Type == type], 
+       main = type, 
+       xlab = "Match Length",
+       ylab = "Frequency",
+       col = "black",
+       border="green")
+}
+
+for (type in program_types) {
+  barplot(table(novice_dataset$Closure.Reason[novice_dataset$Program.Type == type]), 
+       main = type, 
+       xlab = "Closure.Reason",
+       ylab = "Frequency",
+       col = "black",
+       border="green")
+}
+```
+
+Have the response variable distributions changed over time?
+```{r}
+par(mfrow=c(2,2))
+match_years=unique(novice_dataset$Match.Year)
+for (year in match_years) {
+  hist(novice_dataset$Match.Length[novice_dataset$Match.Year == year], 
+       main = year, 
+       xlab = "Match Length",
+       ylab = "Frequency",
+       col = "black",
+       border="green")
+}
+
+for (year in match_years) {
+  barplot(table(novice_dataset$Closure.Reason[novice_dataset$Match.Year == year]), 
+          main = year, 
+          xlab = "Closure.Reason",
+          ylab = "Frequency",
+          col = "black",
+          border="green")
+}
+```
+
+What influence do the various Big and/or Little demographic variables have on the response variable distributions?
+
+```{r}
+dem_m = lm(Match.Length ~ + Big.Age + Big.Level.of.Education + Big.Gender + 
+           Little.Gender, data = novice_dataset)
+summary(dem_m)
+# Significant Factors
+#If Big's level of Education is an associate degree, their match length is about 
+#9 months shorter on average when compared to a big who has no education listed,
+#keeping all other variables fixed
+
+#If a Big's level of Education is a Master's degree, their match length is about 
+#10 months longer on average when compared to a big who has no education listed,
+#keeping all other variables fixed
+
+#If a Big's level of Education is Some High School, their match length is about 
+#12 months shorter on average when compared to a big who has no education listed,
+#keeping all other variables fixed
+
+#For every year older, a big is, their match will last about 0.2 months 
+#longer on average, keeping all other variables fixed
+```
+
+What influence does the alignment of the demographic and/or interest variables (e.g. same gender, similar Hobbies, etc) have on the response variable distributions?
+```{r}
+
+```
+
+A successful match is 1) a match that remains active, 2) a match that lasts a long time, 3) a match that closes due to the age of Little, or 4) Successful Match Closure for the Closure Reason. Provide insights for Big Brothers Big Sisters Twin Cities into what factors tend to lead to a successful (or unsuccessful) match
+
+```{r}
+
+```
+
