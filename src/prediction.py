@@ -26,7 +26,7 @@ def prediction(df):
     "index"
     ], axis=True, inplace=True)
     
-    timely_features = ["call_count", "avg_cadence_day", "max_cadence_day", "std"]
+    timely_features = ["call_count", "avg_cadence_day", "max_cadence_day", "number_of_call_std"]
     X = df[timely_features]  # Features (all columns except 'target')
 
     scaler_x = joblib.load("saved/scaler_x.pkl")
@@ -45,18 +45,10 @@ def prediction(df):
 
 def prediction2(df:pd.DataFrame):
 
-    df.drop([
-    'match_id',
-    'sentiment_trend',
-    "program_type",
-    "big_race_ethnicity",
-    "little_participant__race_ethnicity",
-    "rationale_for_match",
-    "index"
-    ], axis=True, inplace=True)
-    timely_features = ["call_count", "avg_cadence_day", "max_cadence_day", "std"]
+    timely_features = ["call_count", "avg_cadence_day", "max_cadence_day", "number_of_call_std"]
+    print(df.columns)
 
-    X = df.drop(columns = [timely_features] ) # Features (all columns except 'target')
+    X = df.drop(timely_features, axis=1 ) # Features (all columns except 'target')
     scaler_x = joblib.load("saved/scaler_x_2.pkl")
     scaler_y = joblib.load("saved/scaler_y_2.pkl")
     model = joblib.load("saved/model_2.pkl")

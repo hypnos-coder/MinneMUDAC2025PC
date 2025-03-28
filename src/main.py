@@ -1,4 +1,5 @@
 import pandas as pd
+import encoding
 import preprocessing
 import config
 import feature_engineering as fe
@@ -23,7 +24,8 @@ final = fe.timely_features(final)
 data = fe.notes_engineering(final)
 # sentiment engineering
 data = fe.sentiment_engineering(data)
-
+#encoding
+data = encoding.encoding(data)
 
 data.to_excel("modeling.xlsx", index=False)
 

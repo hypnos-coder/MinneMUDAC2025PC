@@ -131,3 +131,35 @@ to_be_deleted = [
     "Little RTBM Date in MF", "Little RTBM in Matchforce", "Little Moved to RTBM in MF", "Little Interview Date", "Little Acceptance Date", "Little RTBM in Matchforce",
 ]
 
+# Mapping occupation categories from the provided list into a busyness scale (1-5)
+busyness_mapping = {
+    # 1: Very Low Busyness (Retired, Unemployed, Fully Flexible)
+    "Retired": 1, "Homemaker": 1, "Unemployed": 1, "Disabled": 1,
+
+    # 2: Low Busyness (Flexible, Light Workload)
+    "Self-Employed, Entrepreneur": 2, "Barber/Hairstylist": 2, "Clergy": 2, 
+    "Librarian": 2, "Personal Trainer/Coach": 2, "Child/Day Care Worker": 2,
+    "Agriculture": 2, "Forestry": 2, "Facilities/Maintenance": 2,
+
+    # 3: Moderate Busyness (Structured, Somewhat Demanding)
+    "Education: Teacher": 3, "Education: Teacher Asst/Aid": 3, "Medical: Nurse": 3, 
+    "Customer Service": 3, "Human Services: Social Worker": 3, "Human Services: Non-Profit": 3,
+    "Factory Worker": 3, "Retail: Sales": 3, "Retail: Mgt": 3, "Insurance": 3, "Govt: Clerical": 3,
+    "Laborer": 3, "Service: Restaurant": 3, "Service: Hotel": 3, "Law: Security Officer": 3, 
+    "Landscaper/Groundskeeper": 3, "Firefighter": 3, "Transport: Driver": 3, "Transport: Mechanic": 3,
+    "Journalist/Media": 3, "Architect": 3, "Tech: Support, Writing": 3,
+
+    # 4: Busy (High Responsibility, Less Flexibility)
+    "Tech: Engineer": 4, "Finance: Accountant": 4, "Business: Marketing": 4, "Consultant": 4,
+    "Transport: Pilot": 4, "Law: Police Officer": 4, "Business: Human Resources": 4, 
+    "Finance: Banking": 4, "Finance: Auditor": 4, "Tech: Computer/Programmer": 4, 
+    "Medical: Doctor, Provider": 4, "Scientist": 4, "Tech: Research/Design": 4,
+    "Law: Paralegal": 4, "Govt: Technician": 4, "Transport: Flight Attendant": 4,
+    "Medical: Pharmacist": 4, "Education: Admin": 4, "Tech: Production Line": 4,
+
+    # 5: Very Busy (Executives, Lawyers, Senior Management)
+    "Business: Mgt, Admin": 5, "Law: Lawyer": 5, "Law: Judge": 5, "Govt: Mgmt/Admin": 5,
+    "Finance: Economist": 5, "Tech: Management": 5, "Education: College Professor": 5,
+    "Investment Banker": 5, "Real Estate: Realtor": 5
+}
+
