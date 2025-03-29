@@ -1,0 +1,7 @@
+- find a way to group race
+- What is the deal with race that have more than one?
+- for interest, instead of a separate analysis, compute similarity between them with an algorythm or an embedding model
+- Compute difference of age between little and big. 
+-  is the age column the age at time of closure?
+- use match start and end date to identify early and late stage.
+- remember the hit of covid
